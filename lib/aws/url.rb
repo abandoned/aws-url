@@ -23,7 +23,7 @@ module AWS
       @base_url = URI base_url
       @key      = key
       @secret   = secret
-      clear
+      @params   = {}
     end
 
     # Builds a signed URL for specified HTTP method.
@@ -45,13 +45,6 @@ module AWS
       signature = sign string_to_sign
 
       "#{@base_url}?#{query}&Signature=#{percent_encode signature}"
-    end
-
-    # Resets the AWS parameters.
-    #
-    # Returns nothing.
-    def clear
-      @params = {}
     end
 
     # Returns the Hash AWS parameters.
