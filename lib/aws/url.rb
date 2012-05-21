@@ -37,7 +37,7 @@ module AWS
 
       # Build the signature.
       string_to_sign = [
-        method.upcase,
+        method.to_s.upcase,
         @base_url.host,
         @base_url.path,
         query
