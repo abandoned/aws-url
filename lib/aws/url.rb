@@ -4,10 +4,6 @@ require 'time'
 require 'uri'
 
 module AWS
-  # Some defensive coding.
-  MissingKey    = Class.new ArgumentError
-  MissingSecret = Class.new ArgumentError
-
   # A Signed Amazon Web Services (AWS) URL.
   #
   # Currently supports Signature Version 2.
@@ -23,13 +19,10 @@ module AWS
     #            AWS endpoint.
     # key      - The String AWS access key id.
     # secret   - The String AWS secret key.
-    #
-    # Raises MissingKey if key is nil.
-    # Raises MissingSecret if secret is nil.
     def initialize(base_url, key, secret)
       @base_url = URI base_url
-      @key      = key    or raise MissingKey
-      @secret   = secret or raise MissingSecret
+      @key      = key
+      @secret   = secret
       @params   = {}
     end
 

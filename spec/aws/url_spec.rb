@@ -8,18 +8,6 @@ module AWS
       @url = URL.new @base_url, 'key', 'secret'
     end
 
-    it 'requires a key' do
-      expect {
-        URL.new 'foo', nil, 'secret'
-      }.to raise_error MissingKey
-    end
-
-    it 'requires a secret' do
-      expect {
-        URL.new 'foo', 'key', nil
-      }.to raise_error MissingSecret
-    end
-
     describe '#build' do
       subject { @url.build :get }
 
