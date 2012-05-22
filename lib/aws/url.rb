@@ -49,7 +49,7 @@ module AWS
 
     # Returns the Hash AWS parameters.
     def params
-      required_params.merge @params
+      default_params.merge @params
     end
 
     # Updates the AWS parameters.
@@ -76,7 +76,7 @@ module AWS
       end
     end
 
-    def required_params
+    def default_params
       {
         'AWSAccessKeyId'   => @key,
         'SignatureVersion' => '2',
