@@ -2,7 +2,6 @@ require 'spec_helper'
 
 module AWS
   describe URL do
-
     before do
       @base_url = 'http://example.com/path'
       @url = URL.new @base_url, 'key', 'secret'
@@ -12,11 +11,11 @@ module AWS
       subject { @url.build :get }
 
       it 'includes the base URL' do
-        should { include @base_url }
+        should include @base_url
       end
 
       it 'is signed' do
-        should { match /Signature=[^&]+$/ }
+        should match /Signature=[^&]+$/
       end
     end
 
@@ -24,19 +23,19 @@ module AWS
       subject { @url.params }
 
       it 'includes a key' do
-        should { include 'AWSAccessKeyId' }
+        should include 'AWSAccessKeyId'
       end
 
       it 'includes a signature version' do
-        should { include 'SignatureVersion' }
+        should include 'SignatureVersion'
       end
 
       it 'includes a signature method' do
-        should { include 'SignatureMethod' }
+        should include 'SignatureMethod'
       end
 
       it 'includes a timestamp' do
-        should { include 'Timestamp' }
+        should include 'Timestamp'
       end
     end
 
