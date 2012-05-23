@@ -56,16 +56,17 @@ module AWS
     #
     # hash - A Hash.
     #
-    # Returns nothing.
+    # Returns self.
     def update(hash)
       hash.each do |key, val|
         # Syntactic sugar: Camelize symbol keys.
         if key.is_a? Symbol
           key = key.to_s.split('_').map(&:capitalize).join
         end
-
         @params[key] = val
       end
+
+      self
     end
 
     private

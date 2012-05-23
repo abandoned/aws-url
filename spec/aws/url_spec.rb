@@ -50,6 +50,10 @@ module AWS
         @url.update :foo => 'bar'
         @url.params.should include 'Foo'
       end
+
+      it 'returns self' do
+        @url.update({}).should be @url
+      end
     end
   end
 end
