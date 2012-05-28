@@ -10,8 +10,34 @@ module AWS
   #
   # Note to self: Do not touch this code unless you have a compelling reason.
   class URL
-    # The SHA256 hash algorithm.
-    SHA256 = OpenSSL::Digest::SHA256.new
+    # Internal: A signature builder.
+    class Signature
+      # The SHA256 hash algorithm.
+      SHA256 = OpenSSL::Digest::SHA256.new
+
+      # Builds a signature.
+      #
+      # secret  - A String AWS secret key.
+      # message - The String to sign.
+      #
+      # Returns a String signature.
+      def self.build(secret, message)
+        new(secret, message).build
+      end
+
+      def initialize(secret, message)
+        @secret  = secret
+        @message = message
+      end
+
+      def build
+        Base64.encode64(digest).chomp
+      end
+
+      def digest
+        OpenSSL::HMAC.digest SHA256, @secret, @message
+      end
+    end
 
     # Initializes a new URL.
     #
@@ -42,8 +68,9 @@ module AWS
         @base_url.path,
         query
       ].join "\n"
-      signature = sign string_to_sign
+      signature = Signature.build @secret, string_to_sign
 
+      # Stitch together URL components.
       "#{@base_url}?#{query}&Signature=#{percent_encode signature}"
     end
 
@@ -86,9 +113,5 @@ module AWS
       }
     end
 
-    def sign(message)
-      digest = OpenSSL::HMAC.digest SHA256, @secret, message
-      Base64.encode64(digest).chomp
-    end
   end
 end
