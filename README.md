@@ -2,7 +2,7 @@
 
 [![travis][status]][travis]
 
-A minimum-viable URL builder for [Amazon Web Services (AWS)][aws].
+AWS URL is a minimum-viable URL builder for [Amazon Web Services (AWS)][aws] API queries. It signs requests with [Signature Version 2][sign].
 
 ![bezos][bezos]
 
@@ -13,6 +13,7 @@ A minimum-viable URL builder for [Amazon Web Services (AWS)][aws].
 [status]:  https://secure.travis-ci.org/hakanensari/aws-url.png
 [travis]:  http://travis-ci.org/hakanensari/aws-url
 [aws]:     http://aws.amazon.com/
+[sign]:    http://docs.amazonwebservices.com/general/latest/gr/signature-version-2.html
 [vacuum]:  https://github.com/hakanensari/vacuum
 [peddler]: https://github.com/hakanensari/peddler
 [fog]:     https://github.com/fog/fog
