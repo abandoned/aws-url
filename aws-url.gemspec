@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ['Hakan Ensari']
   gem.email         = ['hakan.ensari@papercavalier.com']
   gem.description   = %q{A minimum-viable URL builder for Amazon Web Services (AWS)}
-  gem.summary       = %q{Builds an Amazon Web Services URL}
+  gem.summary       = %q{Signs an Amazon Web Services URL}
   gem.homepage      = 'https://github.com/hakanensari/aws-url'
 
   gem.files         = `git ls-files`.split($\)
@@ -16,6 +16,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = AWS::URL::VERSION
 
-  gem.add_development_dependency 'rake',     '~> 0.9'
-  gem.add_development_dependency 'rspec',    '~> 2.9'
+  gem.add_development_dependency 'rake',  '~> 0.9'
+  gem.add_development_dependency 'rspec', '~> 2.9'
 end
