@@ -4,19 +4,7 @@ module AWS
   describe URL do
     before do
       @base_url = 'http://example.com/path'
-      @url = URL.new @base_url, 'key', 'secret'
-    end
-
-    describe '#build' do
-      subject { @url.build :get }
-
-      it 'includes the base URL' do
-        should include @base_url
-      end
-
-      it 'is signed' do
-        should match /Signature=[^&]+$/
-      end
+      @url = URL.new @base_url, :get, 'key', 'secret'
     end
 
     describe '#params' do
@@ -36,6 +24,26 @@ module AWS
 
       it 'includes a timestamp' do
         should include 'Timestamp'
+      end
+    end
+
+    describe '#query' do
+      subject { @url.query }
+
+      it 'is signed' do
+        should match /Signature=[^&]+$/
+      end
+    end
+
+    describe '#to_s' do
+      subject { @url.to_s }
+
+      it 'includes the base URL' do
+        should include @base_url
+      end
+
+      it 'includes the signed query' do
+        should include @url.query
       end
     end
 
